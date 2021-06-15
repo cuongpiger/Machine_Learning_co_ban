@@ -6,7 +6,7 @@
   * **LƯU Ý**: Nếu không nói gì thêm, các vector dc mặc định là **vector cột**.
 * Ma trận - chữ hoa in đậm: $\mathbf{X, Y, W}$.
   * Ma trận được tạo thành từ các **vector cột** theo thứ tự **trái qua phải**: $\mathbf{X = [x_1, x_2,...,x_n]}$.
-  * Ma trận đuôc tạo thành từ các **vector hàng** theo thứ tự **trên xuống dưới**: $\mathbf{X = [x_1;x_2;...;x_n]}$.
+  * Ma trận được tạo thành từ các **vector hàng** theo thứ tự **trên xuống dưới**: $\mathbf{X = [x_1;x_2;...;x_n]}$.
   * Phần tử nằm ở dòng $i$ cột $j$ của ma trận kí hiệu là $x_{ij}$.
   * **LƯU Ý**: Cho ma trận $\mathbf{W}$, nếu không nói gì thêm thì $\mathbf{w_i}$ được hiểu là **vector cột** thứ $i$ của ma trận $\mathbf{W}$.
 
@@ -76,3 +76,83 @@
 
 * Ngoài ra còn có một phép nhân khác gọi là **Hadamard** _(còn được gọi là Element-wise)_ hay được sử dụng trong Machine Learning. Tích Hadamard của hai ma trận có **cùng kích thước** $\mathbf{A, B} \in \mathbb{R}^{m \times n}$ được định nghĩa là:
   $$\mathbf{C = A \odot B} \in \mathbb{R}^{m \times n}, \text{với } c_{ij} = a_{ij} \times b_{ij}$$
+
+# 4. Ma trận đơn vị và ma trận nghịch đảo
+## 4.1. Ma trận đơn vị
+* **Đường chéo chính** của một ma trận là tập hợp các phần tử có chỉ số hàng và chỉ số cột như nhau. Các định nghĩa này cũng áp dụng trên các ma trận không vuông.
+
+* Nếu ma trận $\mathbf{A} \in \mathbb{R}^{m \times n}$ thì đường chéo chính của $\mathbf{A}$ gồm các phần tử:
+  $$\{a_{11}, a_{22},...,a_{pp} \}, \text{với } p = min\{m, n\}$$
+
+* Một ma trận đơn vị bậc $n$ là một ma trận trận thuộc $\mathbb{R}^{n \times n}$ với các phần tử nằm trên đường chéo chính bằng $1$, các phần tử còn lại bằng $0$ và ma trận này được kí hiệu là $\mathbf{I}$ _(identity matrix)_.
+
+* Ma trận đơn vị bậc $n$ được kí hiệu là $\mathbf{I}_n$. Ví dụ:
+  ![](images/01_04.png)
+
+* Giả sử có $\mathbf{A} \in \mathbb{R}^{m \times n}, \mathbf{B} \in \mathbb{R}^{n \times m}$ và $\mathbf{I}_n$ thì:
+  $$\mathbf{AI = A, IB = B}$$
+
+* Với mọi vector $\mathbf{x} \in \mathbb{R}^n$ thì:
+  $$\mathbf{I}_n \mathbf{x = x}$$
+
+## 4.2. Ma trận nghịch đảo
+* Một **ma trận vuông** $\mathbf{A} \in \mathbb{R}^{n \times n}$, nếu **tồn tại một ma trận vuông** $\mathbf{B} \in \mathbb{R}^{n \times n}$ sao cho:
+  $$\mathbf{AB = I}$$
+  * Thì $\mathbf{B}$ được gọi là **ma trận nghịch đảo** _(inverse matrix)_ của $\mathbf{A}$ và lúc này $\mathbf{A}$ được gọi là **khả nghịch** _(invertible, nonsingular, nondegenerate)_.
+  * Nếu không tồn tại ma trận $\mathbf{B}$ thỏa điều kiện trên thì ta nói ma trận $\mathbf{A}$ **không khả nghịch** _(singular, degenerate)_.
+
+* Nếu $\mathbf{A}$ khả nghịch thì ma trận nghịch đảo của $\mathbf{A}$ kí hiệu là $\mathbf{A^{-1}}$.
+* Ma trận nghịch đảo được sử dụng để giải hệ phương trình tuyến tính. Giả sử $\mathbf{A} \in \mathbb{R}^{n \times n}$ là một ma trận khả nghịch và một vector $\mathbf{b} \in \mathbb{R}^n$ bất kì. Khi đó, phương trình:
+  $$\mathbf{Ax = b}$$
+  có nghiệm duy nhất $\mathbf{x = A^{-1}b }$.
+
+* Giả sử hai ma trận $\mathbf{A, B}$ là hai ma trận khả nghịch thì **tích của chúng cũng khả nghịch** và:
+  $$\mathbf{(AB)^{-1} = B^{-1}A^{-1}}$$
+
+# 5. Một vài ma trận đặc biệt khác
+## 5.1. Ma trận đường chéo
+* **Ma trận đường chéo** _(diagonal matrix)_ là ma trận chỉ có các thành phần trên đường chéo chính **khác không**. Định nghĩa này cũng áp dụng cho các ma trận ko vuông.
+* **Ma trận không** là ma trận có tất cả các phần tử trong ma trận bằng không.
+* Ma trận không và ma trận đơn vi cũng được gọi là các ma trận đường chéo.
+* Một vài ví dụ về ma trận đường chéo:
+  ![](images/01_05.png)
+
+* Với các **ma trận đường chéo vuông**, thay vì viết cả ma trận, ta có thể chỉ liệt kê các thành phần nằm trên đường chéo chính. Ví dụ một ma trận đường chéo vuông $\mathbf{A} \in \mathbb{R}^{m \times m}$ có thể dc kí hiệu là:
+  $$diag(a_{11}, a_{22},...,a_{nn})$$
+  với $a_{ii}$ là phần tử nằm ở dòng $i$ cột $i$ của ma trận $\mathbf{A}$.
+
+* Tích, tổng của hai ma trận đường chéo vuông **cùng bậc** cũng là một ma trận đường chéo vuông.
+* Một ma trận đường chéo vuông khả nghịch nếu mọi phần từ nằm trên đường chéo chính khác không.
+* Nghịch đảo của một ma trận đường chéo vuông khả nghịch cũng là một ma trận đường chéo, cụ thể:
+  $$(diag(a_1, a_2,...,a_n))^{-1} = diag(a_1^{-1}, a_2^{-1},...,a_n^{-1})$$
+
+## 5.2. Ma trận tam giác
+* Một ma trận vuông dc gọi là **ma trận tam giác trên** _(upper triangular matrix)_ nếu tất cả các thành phần nằm dưới đường chéo chính bằng không.
+* Một ma trận vuông dc gọi là **ma trận tam giác dưới** _(lower triangular matrix)_ nếu tất cả các thành phần nằm trên đường chéo chính bằng không.
+* Xét hệ:
+  ![](images/01_06.png)
+  * Hệ này có thể dc viết gọn dưới dạng $\mathbf{Ax = b}$ với $\mathbf{A}$ là ma trận tam giác trên.
+  * Hệ phương trình này có thể được giải mà không cần tìm ma trận nghịch đảo $\mathbf{A^{-1}}$.
+  * Nếu ma trận $\mathbf{A}$ là ma trận tam giác trên thì có thể áp dụng phương pháp **back substituation**.
+  * Nếu ma trận $\mathbf{A}$ là ma trận tam giác dưới thì có thể áp dụng phương pháp **forward substituation**.
+
+# 6. Định thức
+## 6.1. Định nghĩa
+* Định thức của một ma trận $\mathbf{A}$ được kí hiệu là $det(\mathbf{A})$.
+* Với $n=1$, $det(\mathbf{A})$ chính là phần tử duy nhất của ma trận đó.
+* Với ma trận vuông bậc $n > 1$ thì:
+  ![](images/01_07.png)
+  * Trong đó $i$ là một giá trị bất kì sao cho $1 \leq i \leq n$ và $\mathbf{A}_{ij}$ là **phần bù đại số** của $\mathbf{A}$ bằng cách xóa đi dòng $i$ và cột $j$ của ma trận $\mathbf{A}$ ban đầu.
+
+## 6.2. Tính chất
+* $det(\mathbf{A}) = det(\mathbf{A}^T)$
+* Định thức của một ma trận đường chéo vuông bằng tích các phần tử nằm trên đường chéo chính.
+* Định thức của ma trận đơn vị bằng $1$.
+* Định thức của một tích bằng tích các định thức:
+  $$det(\mathbf{AB}) = det(\mathbf{A})det(\mathbf{B})$$
+  với $\mathbf{A, B}$ là hai ma trận vuông cùng chiều.
+
+* Nếu ma trận có một vector hàng hoặc vector cột là một vector không thì định thức của ma trận này bằng $0$.
+* Một ma trận khả nghịch khi và chỉ khi định thức của nó khác $0$.
+* Nếu một ma trận khả nghịch, định thức của ma trận nghịch đảo bằng nghịch đảo định thức của ma trận ban đầu.
+  ![](images/01_08.png)
