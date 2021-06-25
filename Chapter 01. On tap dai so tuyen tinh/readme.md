@@ -156,3 +156,44 @@
 * Một ma trận khả nghịch khi và chỉ khi định thức của nó khác $0$.
 * Nếu một ma trận khả nghịch, định thức của ma trận nghịch đảo bằng nghịch đảo định thức của ma trận ban đầu.
   ![](images/01_08.png)
+
+# 7. Tổ hợp tuyến tính, không gian sinh
+## 7.1. Tổ hợp tuyến tính
+* Xem thêm tại đây [https://textbooks.math.gatech.edu/ila/linear-independence.html](https://textbooks.math.gatech.edu/ila/linear-independence.html).
+* Cho các **vector khác không** $\mathbf{a}_1,...,\mathbf{a}_n \in \mathbb{R}^m$ và **các số thực** $\mathit{x_1,...x_n} \in \mathbb{R}$, thì vector:
+  $$\mathbf{b} = x_1\mathbf{a}_1 + x_2\mathbf{a}_2 + ... + x_n\mathbf{a}_n$$
+  được gọi là một **tổ hợp tuyến tính** _(linear combination)_ của $\mathbf{a}_1,...,\mathbf{a}_n$.
+
+* Xét ma trận $\mathbf{A} = [\mathbf{a}_1,\mathbf{a}_2,...\mathbf{a}_n,] \in \mathbb{R}^{m \times n}$ và $\mathbf{x} = [x_1, x_2, ..., x_n]^T$ thì ta có biểu thức:
+  $$\mathbf{b = Ax}$$
+  lúc này ta nói $\mathbf{b}$ là một tổ hợp tuyến tính các cột của $\mathbf{A}$.
+
+* Tập hợp của **tất cả các vector** có thể dc biểu diễn dưới dạng một **tổ hợp tuyến tính** của các cột của một ma trận dc gọi là **không gian sinh** _(span space, span)_ các cột của ma trận đó. Không gian sinh của một hệ các vector dc kí hiệu là $span(\mathbf{a}_1,...,\mathbf{a}_n)$. 
+* Nếu phương trình:
+  $$0 = x_1\mathbf{a}_1 + x_2\mathbf{a}_2 + ... + x_n\mathbf{a}_n$$
+  
+  * Có nghiệm duy nhất $x_1=x_2=...=x_n = 0$ thì ta nói rằng hệ $\{\mathbf{a}_1,\mathbf{a}_2,...,\mathbf{a}_n\}$ là một hệ **độc lập tuyến tính** _(linear independence)_. 
+  * Ngược lại, nếu tồn tại $x_i \neq 0$ so cho phương trình trên thỏa mãn, ta nói rằng hệ **phụ thuộc tuyến tính** _(linear dependence)_.
+
+## 7.2. Tính chất
+* Một hệ là phụ thuộc tuyến tính nếu và chỉ nếu tồn tại một vector trong hệ đó là tổ hợp tuyến tính của các vector còn lại:
+$$\mathbf{a}_i = \dfrac{-x_1}{x_i}\mathbf{a}_1 + ... + \dfrac{-x_{i - 1}}{x_i}\mathbf{a}_{i - 1} + \dfrac{-x_{i + 1}}{x_i}\mathbf{a}_{i + 1} + ... + \dfrac{-x_{n}}{x_i}\mathbf{a}_{n}$$
+  Lúc này $\mathbf{a}_i$ là tổ hợp tuyến tính của các vector còn lại.
+
+* Tập con khác rỗng của một hệ độc lập tuyến tính là một hệ độc lập tuyến tính.
+* Tập hợp các cột của một ma trận khả nghịch tạo thành một hệ độc lập tuyến tính. Giả sử ma trận $\mathbf{A}$ khả nghịch thì phương trình $\mathbf{Ax = 0}$ có nghiệm duy nhất $\mathbf{x = A^{-1}} \times 0$, vì vậy các cột của $\mathbf{A}$ tạo thành một hệ độc lập tuyến tính.
+* Nếu $\mathbf{A}$ là một **ma trận cao** _(tall matrix)_, tức số dòng lớn hơn số cột $m > n$ thì sẽ tồn tại một vector $\mathbf{b}$ sao cho $\mathbf{Ax = b}$ vô nghiệm.
+* Nếu $n > m$, thì $n$ vector bất kì trong ko gian $m$ chiều tạo thành một hệ phụ thuộc tuyến tính.
+
+## 7.3. Cơ sở của một không gian
+* Một hệ các vector $\{\mathbf{a}_1,..., \mathbf{a}_n\}$ trog ko gian vector $m$ chiều $V = \mathbb{R}^m$ dc gọi là một **cơ sở** _(basic)_ nếu hai điều kiện sau thỏa mãn:
+  * $V \equiv span(\mathbf{a}_1,...,\mathbf{a}_n)$.
+  * $\{\mathbf{a}_1,..., \mathbf{a}_n\}$ là một hệ độc lập tuyến tính.
+
+* Khi đó mọi vector $\mathbf{b} \in V$ đều có thể biểu diện **duy nhất** dưới dạng một tổ hợp tuyến tính của các $\mathbf{a}_i$.
+* Từ đây, kết hợp với hai tính chất cuối của mục 7.2 thì ta có thể suy ra rằng $m = n$.
+
+## 7.4. Range va Null space
+* Với mỗi ma trận $\mathbf{A} \in \mathbb{R}^{m \times n}$ thì có hai ko gian con quan trọng ứng vs ma trận này:
+  * Range của $\mathbf{A}$, dc định nghĩa là:
+    $$\Re(\mathbf{A}) = \{\mathbf{y} \in \R^m:\exists \mathbf{x} \in \R^n, \mathbf{Ax = y}\}$$
