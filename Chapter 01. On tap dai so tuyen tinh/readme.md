@@ -253,3 +253,55 @@ $$\mathbf{a}_i = \dfrac{-x_1}{x_i}\mathbf{a}_1 + ... + \dfrac{-x_{i - 1}}{x_i}\m
   $$\mathbf{x} = x_1\mathbf{e}_1 + x_2\mathbf{e}_2 + ... + x_m\mathbf{e}_m$$
   ![](images/01_09.png)
   
+* Giả sử có một hệ cơ sở khác $\mathbf{u}_1,\mathbf{u}_2,...,\mathbf{u}_m$ và các vector này độc lập tuyến tính, thì để biểu diễn một vector $\mathbf{x}$ nào đó từ hệ cơ sở mới này có dạng:
+  $$\mathbf{x} = y_1\mathbf{u}_1 + y_2\mathbf{u}_2 + ... + y_m\mathbf{u}_m = \mathbf{Uy}$$
+  với $\mathbf{U} = [\mathbf{u}_1,...,\mathbf{u}_m]$. Lúc này vector $\mathbf{y} = [y_1, y_2,...,y_m]^T$ chính là biểu diễn của $\mathbf{x}$ trong hệ cơ sở mới. Biểu diễn này là **duy nhất** vì $\mathbf{y = U^{-1}x}$.
+
+* Trong **các ma trận đóng vai trò như một hệ cơ sở**, các **ma trận trực giao**, tức $\mathbf{U^TU = I}$ sẽ dc quan tâm nhiều hơn vì:
+  * **Nghịch đảo của chúng cũng chính là chuyển vị của chúng**, tức $\mathbf{U^{-1} = U}^T$, từ đây $\mathbf{y}$ có thể dc tính một cách nhanh chóng bằng $\mathbf{y = U}^T\mathbf{x}$. Từ đó suy ra $y_i = \mathbf{x}^T\mathbf{u}_i = \mathbf{u}_i^T\mathbf{x}$ với $i = 1,...,m$.
+
+* Việc chuyển đổi hệ cơ sở sử dụng ma trận trực giao có thể được coi như một phép xoay trục tọa độ. Nhìn theo một cách khác thì đây cũng là một phép xoay vector theo chiều ngược lại nếu ta coi các trục tọa độ là cố định.
+
+# 11. Trị riêng và vector riêng
+## 11.1. Định nghĩa
+* Cho một ma trận vuông $\mathbf{A} \in \R^{n \times n}$, một vector $\mathbf{x} \in \R^n, \mathbf{x} \neq 0$ và **một số vô hướng** $\lambda$ (có thể thực hoặc phức). Nếu $\mathbf{Ax} = \lambda\mathbf{x}$ thì ta nói $\lambda$ và $\mathbf{x}$ là một cặp trị riêng và vector riêng _(eigenvalue và eigenvector)_ của ma trận $\mathbf{A}$.
+* Từ định nghĩa trên, ta cũng có $(\mathbf{A - \lambda I})\mathbf{x} = 0$, tức $\mathbf{x}$ nằm trong null space của $(\mathbf{A - \lambda I})$, mà vì $\mathbf{x} \neq 0$ cho nên ma trận $(\mathbf{A - \lambda I})$ ko khả nghịch. Nói cách khác $det(\mathbf{A - \lambda I}) = 0$, tức $\lambda$ là nghiệm của phương trình $det(\mathbf{A} - t \mathbf{I}) = 0$. Định thức này là một đa thức bật $n$ của $t$, dc gọi là **đa thức đặc trưng** _(charecreristic polynomial)_ của $\mathbf{A}$, kí hiệu là $p_{\mathbf{A}}(t)$. 
+* Tập hợp của tất cả các trị riêng của một ma trận vuông còn được gọi là **phổ** _(spectrum)_ của ma trận đó.
+  
+## 11.2. Tính chất
+* Nếu $\mathbf{x}$ là vector riêng của $\mathbf{A}$ ứng với $\lambda$ thì $k\mathbf{x}, \forall k \neq 0$ cũng là vector riêng ứng với trị riêng $\lambda$ đó.
+  * Nếu $\mathbf{x}_1, \mathbf{x}_2$ là hai vector riêng ứng với cùng trị riêng $\lambda$, thì tổng của chúng cũng là một vector ứng với trị riêng $\lambda$ này.
+  * Từ đây, có thể suy ra tập hợp các vector riêng ứng với một trị riêng của một ma trận vuông tạo thành một không gian vector con, dc gọi là **không gian riêng** _(eigenspace)_ ứng với trị riêng đó.
+* Mọi ma trận vuông bậc $n$ đều có $n$ trị riêng (có khả năng lặp lại) và có thể là các số phức.
+* **Tích của tất cả các trị riêng** của một ma trận bằng **định thức của ma trận đó**. Tổng tất cả các trị riêng của một ma trận bằng **tổng các phần tử nằm trên đường chéo chính của ma trận đó**.
+* Phổ của một ma trận bằng phổ của ma trận chuyển vị của nó.
+* Nếu $\mathbf{A, B}$ là các ma trận vuông cùng bậc thì $p_{\mathbf{AB}}(t) = p_{\mathbf{BA}}(t)$. Điều này có nghĩa là dù tích của hai ma trận **ko có tính chất giao hoán** nhưng đa thức đặc trưng của $\mathbf{AB}$ và $\mathbf{BA}$ là như nhau. Tức phổ của hai tích $\mathbf{AB}$ và $\mathbf{BA}$ trùng nhau.
+* Với ma trận đối xứng (hoặc tổng quát, Hermitian), tất cả các trị riêng của nó đều là các số thực. Giả sử $\lambda$ là một trị riêng của một ma trận Hermitian $\mathbf{A}$ và $\mathbf{x}$ là vector riêng ứng với trị riêng đó. Từ định nghĩa ta suy ra:
+  $$\mathbf{Ax} = \lambda\mathbf{x} \Rightarrow (\mathbf{Ax})^H = \bar{\lambda}\mathbf{x}^H \Rightarrow \bar{\lambda}\mathbf{x}^H = \mathbf{x}^H\mathbf{A}$$
+  với $\bar{\lambda}$ là liên hiệp phức của số vô hướng $\lambda$. Nhân cả hai vế vào bên phải với $\mathbf{x}$ ta có:
+  $$\bar{\lambda}\mathbf{x}^H\mathbf{x} = \mathbf{x}^H\mathbf{Ax} \Rightarrow (\lambda - \bar{\lambda})\mathbf{x}^H \mathbf{x} = 0$$
+  vì $\mathbf{x} \neq 0$ nên $\mathbf{x}^H\mathbf{x} \neq 0$, từ đó suy ra $\bar{\lambda} = \lambda$, vậy nên $\lambda$ phải là một số thực. Từ đó:
+  $$\bar{\lambda}\mathbf{x}^H\mathbf{x} = \mathbf{x}^H\mathbf{Ax} = \lambda\mathbf{x}^H\mathbf{x}$$
+
+* Nếu $(\lambda, \mathbf{x})$ là một cặp trị riêng, vector riêng của một ma trận khả nghịch $\mathbf{A}$ thì $(\dfrac{1}{\lambda}, \mathbf{x})$ là một cặp trị riêng, vector riêng của $\mathbf{A^{-1}}$, vì $\mathbf{Ax = \lambda x} \Rightarrow \dfrac{1}{\lambda}\mathbf{x} = \mathbf{A^{-1}x}$
+  
+# 12. Chéo hóa ma trận
+## 12.1. Định nghĩa
+* Giả sử ta có $\lambda_1,...,\lambda_n$ (có thể lặp lại) và $\mathbf{x}_1,...,\mathbf{x}_n \neq 0$ lần lượt là các trị riêng và vector riêng của một ma trận vuông $\mathbf{A}$. Tức:
+  $$\mathbf{Ax}_i = \lambda_i \mathbf{x}_i, \forall i = 1,...,n$$
+
+* Đặt $\mathbf{\Lambda} = diag(\lambda_1,\lambda_2,...,\lambda_n)$ (ma trận đường chéo) và $\mathbf{X} = [\mathbf{x}_1,\mathbf{x}_2,...,\mathbf{x}_n]$, ta sẽ có $\mathbf{AX = X\Lambda}$
+* Hơn nữa, nếu các vector riêng $\mathbf{x}_1,...,\mathbf{x}_n$ độc lập tuyến tính thì $\mathbf{X}$ khả nghịch. Khi đó ta có thể viết $\mathbf{A}$ dưới dạng **tích của ba ma trận**:
+  $$\mathbf{A = X \Lambda X^{-1}}$$
+
+* Các vector riêng $\mathbf{x}_i$ **thường dc chọn** sao cho $\mathbf{x}_i^T \mathbf{x}_i = 1$. Cách biểu diễn ma trận như trên dc gọi là **eigendecomposition** vì nó tách ra thành tích của các ma trận đặc biệt dựa trên vector riêng và trị riêng. Và vì $\mathbf{\Lambda}$ là ma trận đường chéo cho nên cách triền khai này còn dc gọi là chéo hóa ma trận.
+
+## 12.2. Tính chất
+* Khái niệm chéo hóa ma trận chỉ áp dụng với ma trận vuông. Vì ko có định nghĩa vector riêng hay trị riêng cho ma trận ko vuông.
+* Ko phải ma trận vuông nào cũng có thể chéo hóa dc _(diagonalizable)_. Một ma trận vuông bậc $n$ chéo hóa dc nếu có đủ $n$ vector riêng độc lập tuyến tính.
+* Nếu một ma trận chéo hóa dc, thì sẽ có nhiều hơn một cách chéo hóa ma trận đó. Chỉ cần đổi vị trí các $\lambda_i$ và vị trí tương ứng của các cột của $\mathbf{X}$ ta sẽ có dc một cách chéo hóa mới.
+* Nếu $\mathbf{A}$ có thể biểu diễn dc dưới dạng tích của ba ma trận, thì lúc này lũy thừa của nó cũng chéo hóa dc:
+  $$\mathbf{A}^2 = \mathbf{(X \Lambda X^{-1})(X \Lambda X^{-1})} = \mathbf{X \Lambda^2 X^{-1}}$$
+  $$\mathbf{A}^k = \mathbf{X \Lambda}^k \mathbf{X^{-1}}, \forall k \in \N$$
+
+* Nếu $\mathbf{A}$ khả nghịch, thì $\mathbf{A^{-1}} = (\mathbf{X \Lambda X^{-1}})^{\mathbf{-1}} = \mathbf{X \Lambda^{-1} X^{-1}}$. Vậy có thể áp dụng chéo hóa ma trận để tìm ma trận nghịch đảo.
