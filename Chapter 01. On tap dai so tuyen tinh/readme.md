@@ -342,3 +342,43 @@ u & v
 u \\ 
 v
 \end{bmatrix} = u^2 + v^2 - 2vu = (u - v)^2 \geq 0, \forall u, v \in \R$$
+
+## 13.2. Tính chất
+* Mọi trị riêng của một ma trận xác định dương đều là mốt số thực dương
+  * Các trị riêng của các ma trận dạng này là số thực vì các ma trận đều là đối xứng (xem lại mục 11.2). Để chứng mình các trị riêng này là các số thực dương, giả sử $\lambda$ là một trị riêng của một ma trận xác định dương $\mathbf{A}$ và $\mathbf{x}$ là vector riêng ứng với trị riêng này. Nhân vào bên trải cả hai vế của $\mathbf{Ax = \lambda x}$ với $\mathbf{x}^H$ ta có:
+    $$\lambda \mathbf{x}^H\mathbf{x} = \mathbf{x}^H \mathbf{Ax} > 0$$
+    (ở đây Hermitian dc sử dụng để xét tổng quát cho cả trường hợp ma trận phức)
+  * Vì $\mathbf{x}^H\mathbf{x}$ luôn dương với mọi $\mathbf{x}$. Ban đầu ta giả sử $\mathbf{A}$ là ma trận xác định dương, nên $\mathbf{x}^H \mathbf{Ax} > 0$, từ đây có thể suy ra rằng $\lambda > 0$.
+  * Ta có thể chứng minh dc rằng mọi trị riêng của một **ma trận nửa xác định dương** là **ko âm**.
+
+* Mọi ma trận xác định dương là **khả nghịch**. Ngoài ra, định thức của nó còn là một số dương.
+  * Điều này có thể trực tiếp suy ra từ tính chất đầu tiên, vì định thức của một ma trận có thể dc tính bằng tích của tất cả các trị riêng của nó, mà theo tính chất đầu tiên, thì mọi trị riêng đều lớn hơn $0$.
+* Tiêu chuẩn Sylvester: 
+  * Một ma trận Hermitian là xác định dương nếu mọi **leading principal minors** của nó là **dương**.
+  * Một ma trận Hermitian là nửa xác định dương nếu mọi **principal minors** của nó là **ko âm**.
+  * Đây là một tiêu chuẩn để kiểm tra một ma trận Hermitian $\mathbf{A} \in \R^n$ có phải là xác định dương hoặc nửa xác định dương hay không.
+  * Khái niệm về **leading principal minors** và **principal minors** dc định nghĩa như sau:
+    * Gọi $\mathfrak{L}$ là một tập con bất kì của $\{1,2,3,...,n\}$, $\mathbf{A}_{\mathfrak{L}}$ là **ma trận con** của $\mathbf{A}$ bằng cách trích ra các hàng và cột có chỉ số nằm trong $\mathfrak{L}$ của $\mathbf{A}$. Khi đó $\mathbf{A}_{\mathfrak{L}}$ và $det(\mathbf{A}_{\mathfrak{L}})$ lần lượt dc gọi là **ma trận con chính** _(principal submatrix)_ và **principal minor** của $\mathbf{A}$.
+    * Nếu $\mathfrak{L}$ chỉ bao gồm **các số tự nhiên liên tiếp** từ $1$ đến $k \leq n$, ta nói $\mathbf{A}_{\mathfrak{L}}$ và $det(\mathbf{A}_{\mathfrak{L}})$ lần lượt là **leading principal submatrix** và **leading principal minor** bậc $k$ của $\mathbf{A}$.\
+* Ngoài ra, ta có:
+  $$\mathbf{A} = \mathbf{B}^H\mathbf{B}$$
+  tức $\mathbf{A}$ là ma trận nửa xác định dương với mọi ma trận $\mathbf{B}$ _(_ $\mathbf{B}$ ko nhất thiết phải vuông _)_.
+  * Thật vậy, với mọi vector $\mathbf{x} \neq 0$ với chiều phù hợp:
+    $$\mathbf{x}^H \mathbf{Ax} = \mathbf{x}^H \mathbf{B}^H \mathbf{Bx} = (\mathbf{Bx})^H (\mathbf{Bx}) \geq 0$$
+
+* **Khai triển Cholesky** _(Cholesky decomposition)_.
+  * Mọi ma trận Hermitian - nửa xác định dương $\mathbf{A}$ đều biểu diễn dc dưới dạng:
+    $$\mathbf{A = LL}^H$$
+    trong đó $\mathbf{L}$ là một **ma trận tam giác dưới** với các phần tử nằm trên đường chéo là **thực dương**.
+
+* Nếu $\mathbf{A}$ là một ma trận nửa xác định dương thì:
+  $$\mathbf{x}^T \mathbf{Ax} = 0 \Leftrightarrow \mathbf{Ax} = 0$$
+  * Nếu $\mathbf{Ax} = 0 \Rightarrow \mathbf{x}^T \mathbf{Ax} = 0$ một cách hiển nhiên.
+  * Nếu $\mathbf{x}^T \mathbf{Ax} = 0$. Với vector $\mathbf{y} \neq 0$ bất kì **có cùng kích thước** với $\mathbf{x}$, xét hàm số sau đây:
+    $$f(\lambda) = (\mathbf{x} + \lambda \mathbf{y})^T \mathbf{A}(\mathbf{x + \lambda y})$$
+    * Hàm số này **ko âm** với mọi $\lambda$ vì $\mathbf{A}$ là ma trận nửa xác định dương. Đây là một tam thức bậc hai của $\lambda$:
+      $$f(\lambda) = \mathbf{y}^T \mathbf{Ay}\lambda^2 + 2\mathbf{y}^T \mathbf{Ax} \lambda + \mathbf{x}^T \mathbf{Ax} = \mathbf{y}^T \mathbf{Ay}\lambda^2 + 2\mathbf{y}^T \mathbf{Ax} \lambda$$
+      Xét hai trường hợp:
+        * $\mathbf{y}^T \mathbf{Ay} = 0$: Khi đó, $f(\lambda) = 2\mathbf{y}^T \mathbf{Ax} \lambda \geq 0, \forall \lambda$ nếu và chỉ nếu $\mathbf{y}^T \mathbf{Ax} = 0$.
+        * $\mathbf{y}^T \mathbf{Ay} > 0$: Khi đó tam thức bậc hai $f(\lambda) \geq 0, \forall \lambda$ nếu và chỉ nếu $\Delta' = (\mathbf{y}^T \mathbf{Ax})^2 \leq 0$ vì hệ số ứng với thành phần bậc hai bằng $\mathbf{y}^T \mathbf{Ay} > 0$. Điều này cũng đồng nghĩa với việc $\mathbf{y}^T \mathbf{Ax} = 0$.
+    * Tóm lại, $\mathbf{y}^T\mathbf{Ax} = 0, \forall \mathbf{y} \neq 0$. Điều này chỉ xảy ra nếu $\mathbf{Ax} = 0$. 
