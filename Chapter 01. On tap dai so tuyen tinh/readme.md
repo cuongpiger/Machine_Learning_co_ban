@@ -304,4 +304,41 @@ $$\mathbf{a}_i = \dfrac{-x_1}{x_i}\mathbf{a}_1 + ... + \dfrac{-x_{i - 1}}{x_i}\m
   $$\mathbf{A}^2 = \mathbf{(X \Lambda X^{-1})(X \Lambda X^{-1})} = \mathbf{X \Lambda^2 X^{-1}}$$
   $$\mathbf{A}^k = \mathbf{X \Lambda}^k \mathbf{X^{-1}}, \forall k \in \N$$
 
-* Nếu $\mathbf{A}$ khả nghịch, thì $\mathbf{A^{-1}} = (\mathbf{X \Lambda X^{-1}})^{\mathbf{-1}} = \mathbf{X \Lambda^{-1} X^{-1}}$. Vậy có thể áp dụng chéo hóa ma trận để tìm ma trận nghịch đảo.
+* Nếu $\mathbf{A}$ khả nghịch, thì $\mathbf{A^{-1}} = (\mathbf{X \Lambda X^{-1}})^{\mathbf{-1}} = \mathbf{X \Lambda^{-1} X^{-1}}$. Vậy có thể áp dụng chéo hóa ma trận để tìm ma trận nghịch đảo.\
+
+# 13. Ma trận xác định dương
+## 13.1. Định nghĩa
+* Nếu một ma trận đối xứng $\mathbf{A} \in \R^{n \times n}$ dc gọi là **xác định dương** _(positive definite)_ nếu:
+  $$\mathbf{x}^T\mathbf{Ax} > 0, \forall \mathbf{x} \in \R^n, \mathbf{x} \neq 0$$
+
+* Một ma trận đối xứng $\mathbf{A} \in \R^{n \times n}$ dc gọi là **nửa xác định dương** _(positive semidefinite)_, thường dc kí hiệu là $PSD$ nếu:
+  $$\mathbf{x}^T\mathbf{Ax} \geq 0, \forall \mathbf{x} \in \R^n, \mathbf{x} \neq 0$$
+
+* Trên thực tế, ma trận nửa xác định dương thường dc sử dụng nhiều hơn.
+
+* Ma trận **xác định âm** _(negative definite)_ và **nửa xác định âm** _(negative semidefinite)_ cũng dc định nghĩa tương tự.
+
+* Các kí hiệu $\mathbf{A} \succ 0, \mathbf{A} \succeq 0, \mathbf{A} \prec 0, \mathbf{A} \preceq 0$ lần lượt dc dùng để chỉ một ma trận là xác định dương, nửa xác định dương, xác định âm, nửa xác định âm.
+
+* Ký hiệu $\mathbf{A \succ B}$ cũng dc dùng để chỉ ra rằng $\mathbf{A - B} \succ 0$.
+
+* Một ma trận phức, Hermitian $\mathbf{A} \in \mathbb{C}^{n \times n}$, dc gọi là xác định dương nếu:
+  $$\mathbf{x}^H\mathbf{Ax} > 0, \forall \mathbf{x} \in \mathbb{C}^n, \mathbf{x} \neq 0$$
+
+* Ví dụ, $\mathbf{A} = \begin{bmatrix}
+1 & -1 \\ 
+-1 & 1
+\end{bmatrix}$ là nửa xác định dương vì với mọi vector $\mathbf{x} = \begin{bmatrix}
+u \\ 
+v
+\end{bmatrix}$, ta có:
+
+$$\mathbf{x}^T\mathbf{Ax} = \begin{bmatrix}
+u & v 
+\end{bmatrix}\begin{bmatrix}
+1 & -1 \\ 
+-1 & 1
+\end{bmatrix}\begin{bmatrix}
+u \\ 
+v
+\end{bmatrix} = u^2 + v^2 - 2vu = (u - v)^2 \geq 0, \forall u, v \in \R$$
