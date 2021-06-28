@@ -382,3 +382,57 @@ v
         * $\mathbf{y}^T \mathbf{Ay} = 0$: Khi đó, $f(\lambda) = 2\mathbf{y}^T \mathbf{Ax} \lambda \geq 0, \forall \lambda$ nếu và chỉ nếu $\mathbf{y}^T \mathbf{Ax} = 0$.
         * $\mathbf{y}^T \mathbf{Ay} > 0$: Khi đó tam thức bậc hai $f(\lambda) \geq 0, \forall \lambda$ nếu và chỉ nếu $\Delta' = (\mathbf{y}^T \mathbf{Ax})^2 \leq 0$ vì hệ số ứng với thành phần bậc hai bằng $\mathbf{y}^T \mathbf{Ay} > 0$. Điều này cũng đồng nghĩa với việc $\mathbf{y}^T \mathbf{Ax} = 0$.
     * Tóm lại, $\mathbf{y}^T\mathbf{Ax} = 0, \forall \mathbf{y} \neq 0$. Điều này chỉ xảy ra nếu $\mathbf{Ax} = 0$. 
+
+# 14. Chuẩn của vector và ma trận
+![](images/01_10.png)
+* Norm: Hay còn dc gọi là **chuẩn** dùng để xác định khoảng cách giữa hai vector bất kì.
+* Cho một hàm số $f: \R^n \rightarrow \R$ dc gọi là norm nếu nó thỏa mãn ba điều kiện sau:
+  * $f(\mathbf{x}) \geq 0$, nếu dấu bằng xảy ra $\Leftrightarrow \mathbf{x = 0}$
+    * Tính chất này dễ hiểu vì khoảng cách ko thể là số âm. Hơn nữa nếu khoảng cách giữa hai điểm trùng nhau thì điều đó cho thấy rằng hai điểm này trùng nhau.
+  * $f(\alpha\mathbf{x}) = |\alpha|f(\mathbf{x}), \forall \alpha \in \R$.
+    * Giả sử có ba điểm $\mathbf{y, v, z}$ nằm thẳng hàng, hơn nữa $\mathbf{v - y} = \alpha (\mathbf{v - z})$, thì điều này có nghĩa rằng khoảng cách giữa $\mathbf{v}$ và $\mathbf{y}$ gấp $|\alpha|$ lần khoảng cách giữa $\mathbf{v}$ và $\mathbf{z}$.
+  * $f(\mathbf{x}_1) = f(\mathbf{x}_2) \geq f(\mathbf{x}_1 + \mathbf{x}_2), \forall \mathbf{x}_1, \mathbf{x}_2 \in \R^n$.
+    * Đây chính là bất đẳng thức tam giác, nếu ta coi $\mathbf{x}_1 = \mathbf{y - w}, \mathbf{x}_2 = \mathbf{w - z}$ với $\mathbf{y, z, w}$ là ba điểm bất kì nằm trong cùng một không gian.
+
+## 14.1. Một số chuẩn vector thường dùng
+* Độ dài Euclid của một vector $\mathbf{x} \in \R^n$ chính là một norm, norm này dc gọi là $\mathit{l}_2$ norm hoặc Euclid norm:
+  $$||\mathbf{x}||_2 = \sqrt{x_1^2 + x_2^2 + ... + x_n^2}$$
+* Bình phương của $\mathit{l}_2$ norm chính là **tích vô hướng của một vector với chính nó**, $||\mathbf{x}||_2^2 = \mathbf{x}^T\mathbf{x}$. Với $p \geq 1$, ta có hàm số:
+  $$||\mathbf{x}||_p = (|x_1|^p + |x_2|^p + ... + |x_n|^p)^\frac{1}{p}$$
+  và được gọi là $\mathit{l}_p$ norm.
+
+* Khi $p \rightarrow \infin$, giả sử $i = \text{arg max}_{j=1,2,...,n}|x_j|$. Khi đó:
+  $$||\mathbf{x}||_p = |x_i|\left ( 1 + { \left | \dfrac{x_1}{x_i} \right | }^p + ... + { \left | \dfrac{x_{i - 1}}{x_i} \right | }^p + { \left | \dfrac{x_{i + 1}}{x_i} \right | }^p + ... + { \left | \dfrac{x_n}{x_i} \right | }^p \right )^{\frac{1}{p}}$$
+
+* Ta thấy rằng:
+  $$\lim_{p \rightarrow \infin}\left ( 1 + { \left | \dfrac{x_1}{x_i} \right | }^p + ... + { \left | \dfrac{x_{i - 1}}{x_i} \right | }^p + { \left | \dfrac{x_{i + 1}}{x_i} \right | }^p + ... + { \left | \dfrac{x_n}{x_i} \right | }^p \right )^{\frac{1}{p}} = 1$$
+  và vì đại lượng nằm trong dấu ngoặc đơn ko vượt quá $n$, ta sẽ có:
+  $$||\mathbf{x}||_\infin \triangleq \lim_{p \rightarrow \infin} ||\mathbf{x}||_p = |x_i| = \max_{j=1,2,...,n}|x_j|$$
+
+## 14.2. Chuẩn Frobenius của ma trận
+* Với một ma trận $\mathbf{A} \in \R^{m \times n}$ chuẩn thường dc dùng nhất là chuẩn Frobenius, kí hiệu là $||\mathbf{A}||_F$ là căn bậc hai của tổng bình phương tất cả các phần tử cua ma trận đó:
+  $$||\mathbf{A}||_F = \sqrt{\sum_{i=1}^{m}\sum_{j=1}^{n} a_{ij}^2}$$
+  * Cần chú ý rằng $\mathit{l}_2$ norm là một norm khác của ma trận, ko dc phổ biến bằng Forbenius norm.
+
+## 14.3. Vết của ma trận
+* **Vết** _(trace)_ của một ma trận vuông là tổng của tất cả các phần tử nằm trên đường chéo chính của ma trận đó.
+* Vết của một ma trận $\mathbf{A}$ kí hiệu là $trace(\mathbf{A})$.
+* Giả sử rằng các ma trận trong hàm trace là vuông và các phép nhân ma trận thực hiện dc, ta có các tính chất quan trọng sau:
+  * Một ma trận vuông bất kì và chuyển vị của nó có trace bằng nhau:
+  $$trace(\mathbf{A}) = trace(\mathbf{A}^T)$$
+  
+  * Trace của một tổng bằng tổng các trace:
+  $$trace(\sum_{i=1}^k \mathbf{A}_i) = \sum_{i=1}^k trace(\mathbf{A}_i)$$
+
+  * Với $k$ là một số bất kì, ta có:
+  $$trace(k \mathbf{A}) = k \space trace(\mathbf{A})$$
+
+  * Với ma trận vuông $\mathbf{A}$ và các trị riêng $\lambda_i, i = 1, 2,...,n$ của nó (có thể phức hoặc lặp), thì:
+  $$trace(\mathbf{A}) = \sum_{i=1}^n \lambda_i$$
+
+  * $$trace(\mathbf{AB}) = trace(\mathbf{BA})$$
+  * $trace(\mathbf{ABC}) = trace(\mathbf{BCA})$ nhưng $trace(\mathbf{ABC})$ ko đồng nhất với $trace(\mathbf{ACB})$
+  * Nếu $\mathbf{X}$ là một ma trận khả nghịch cùng chiều với $\mathbf{A}$ thì:
+  $$trace({\mathbf{XAX^{-1}}}) = trace(\mathbf{X^{-1}XA}) = trace(\mathbf{A})$$
+
+  * $||\mathbf{A}||_F^2 = trace(\mathbf{A} \mathbf{A}^T) = trace(\mathbf{A}^T \mathbf{A})$ với $\mathbf{A}$ là một ma trận bất kì. Từ đây ta có $trace(\mathbf{A} \mathbf{A}^T) \geq 0$ với mọi ma trận $\mathbf{A}$.
